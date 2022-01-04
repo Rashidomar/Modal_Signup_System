@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "data": {
+        "username": "test",
+        "email": "test@mail.com",
+        "password": "test"
+      },
+      "id": 1
+    },
+    {
+      "data": {
+        "username": "test1",
+        "email": "test1@mail.com",
+        "password": "test"
+      },
+      "id": 2
+    },
+    {
+      "data": {
+        "username": "test2",
+        "email": "test2@mail.com",
+        "password": "test"
+      },
+      "id": 3
+    },
+    {
+      "data": {
+        "username": "test2",
+        "email": "test2@mail.com",
+        "password": "test"
+      },
+      "id": 4
+    },
+    {
+      "data": {
+        "username": "test5",
+        "email": "test5@gmail.com",
+        "password": "test"
+      },
+      "id": 5
+    }
+  ],
+
+  "playlist":[],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

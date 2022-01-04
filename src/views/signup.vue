@@ -2,11 +2,13 @@
 <div class="backdrop" @click.self="closebackdrop">
 <div class="login-page">
   <div class="form">
+    <router-link to="../" class="close">X</router-link>
     <form class="register-form">
-      <input type="text" placeholder="email address"/>
-      <input type="password" placeholder="password"/>
-      <button>Login</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
+      <input type="text" placeholder="Username" v-model="username"/>
+      <input type="text" placeholder="email address" v-model="email"/>
+      <input type="password" placeholder="password" v-model="password"/>
+      <button @click="handlesubmit">Sign Up</button>
+      <p class="message">Already registered?<router-link to="/login">Log in</router-link></p>
     </form>
   </div>
 </div>
@@ -15,12 +17,44 @@
 
 
 <script>
+import axios from 'axios'
 export default {
+    data(){
+        return{
+            username :'',
+            email: '',
+            password: '',
+        }
+
+    },
+
     methods:{
         closebackdrop(){
             this.$emit("close")
+        },
+
+       async handlesubmit(e){
+            e.preventDefault()
+            const  data = {
+                username : this.username,
+                email : this.email,
+                password : this.password
+            };
+            const response = await axios.post('  http://localhost:3000/users', {data})
+            console.log(response)
+            if(response.status == 201){
+                localStorage.setItem("user-info", JSON.stringify(response.data))
+                this.$router.push({name:'Home'})
+            }
         }
 
+    },
+
+    mounted(){  
+      const user = localStorage.getItem("user-info");
+      if(user){
+          this.$router.push({name:'Home'})
+        }      
     }
 }
 </script>
@@ -87,5 +121,15 @@ export default {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(9, 192, 248, 0.74); /* Black w/ opacity */
+}
+
+.close{
+    position: absolute;
+    background: rgba(9, 192, 248, 0.74);;
+    color: white;
+    top: -0px;
+    right: -0px;
+    width: 40px;
+    text-decoration: none;
 }
 </style>

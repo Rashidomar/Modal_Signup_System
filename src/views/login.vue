@@ -2,12 +2,12 @@
 <div class="backdrop" @click.self="closebackdrop">
 <div class="login-page">
   <div class="form">
+    <router-link to="../" class="close">X</router-link>
     <form class="register-form">
-      <input type="text" placeholder="Username"/>
-      <input type="text" placeholder="email address"/>
-      <input type="password" placeholder="password"/>
-      <button>Sign Up</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
+      <input type="text" v-model="username" placeholder="Username"/>
+      <input type="password" v-model="password" placeholder="password"/>
+      <button @click="login">Login</button>
+      <p class="message">Create Account<router-link to="/signup">Sign Up</router-link></p>
     </form>
   </div>
 </div>
@@ -16,14 +16,41 @@
 
 
 <script>
+import axois from 'axios'
 export default {
+    data(){
+        return{ 
+            username: '',
+            password:''
+        }
+    },
+
     methods:{
         closebackdrop(){
             this.$emit("close")
+        },
+
+        async login(e){
+            e.preventDefault();
+            const response = await axois.get(`http://localhost:3000/users?data.username=${this.username}&data.password=${this.password}`);
+            console.log(response)
+            if(response.status == 200){
+              localStorage.setItem('user-info', JSON.stringify(response.data))
+              this.$router.push({name:'Home'})
+            }
         }
 
+
+    },
+
+      mounted(){  
+      const user = localStorage.getItem("user-info");
+      if(user){
+          this.$router.push({name:'Home'})
+        }      
     }
 }
+
 </script>
 
 <style>
@@ -88,5 +115,15 @@ export default {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(9, 192, 248, 0.74); /* Black w/ opacity */
+}
+
+.close{
+    position: absolute;
+    background: rgba(9, 192, 248, 0.74);;
+    color: white;
+    top: -0px;
+    right: -0px;
+    width: 40px;
+    text-decoration: none;
 }
 </style>
