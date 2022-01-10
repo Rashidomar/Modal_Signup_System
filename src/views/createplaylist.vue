@@ -1,17 +1,18 @@
 <template>
 <div class="background">
-<div class="c_playlist">
+<div class="c_playlist"> 
     <form class="row g-3 p_form">
+    <router-link to="../" class="p_close">X</router-link>
     <div class="col-12">
         <label for="inputAddress" class="form-label">Title</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <input type="text" class="form-control" v-model="title" placeholder="1234 Main St">
     </div>
     <div class="col-12">
         <label for="inputAddress2" class="form-label">Description</label>
-        <textarea class="form-control" ></textarea>
+        <textarea class="form-control" v-model="description" ></textarea>
     </div>
     <div class="col-12">
-        <button type="submit" class="btn btn-primary">Create Playlist</button>
+        <button type="submit" @click="submit" class="btn btn-primary">Create Playlist</button>
     </div>
     </form>
 </div>
@@ -19,6 +20,55 @@
 </template>
 
 <script>
+import axios from 'axios'
+export default{
+    data(){
+        return{
+            title:'',
+            description:'',
+            date_time: new Date().toLocaleString(),
+            user_id:'',
+            created_by:'',
+            songs:[]
+        }
+    },
+
+    methods:{
+        async submit(e){
+            e.preventDefault()
+            // console.log(this.date_time)
+            const data = {
+                title: this.title,
+                description: this.description,
+                user_id:this.user_id,
+                created_by:this.created_by,
+                created_at: this.date_time,
+                songs:this.songs
+            };
+
+            const response = await axios.post('http://localhost:3000/playlists', {data})
+
+            if(response.status == 201){
+                console.log(data)
+                this.$router.push({name:'Home'})
+            }
+
+        }   
+        
+    },
+
+    mounted(){  
+      const user = JSON.parse(localStorage.getItem("user-info"));
+      if(!user){
+          this.$router.push({name:'Home'})
+        }else{
+            this.user_id = user[0].id
+            this.created_by = user[0].data.username
+        } 
+    }
+
+}
+
 
 </script>
 
@@ -48,5 +98,16 @@ position: relative;
   padding: 45px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius: 5px;
+}
+
+.p_close{
+    position: absolute;
+    background:  rgba(6, 62, 247, 0.664);
+    color: white;
+    top: -16px;
+    right: 0px;
+    width: 40px;
+    text-decoration: none;
+    text-align: center;
 }
 </style>

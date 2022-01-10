@@ -4,6 +4,7 @@ import Home from './views/Home';
 import Login from './views/login'
 import Signup from './views/signup'
 import CreatePlaylist from './views/createplaylist'
+import PlaylistDetails from  './views/playlistDetails'
 
 const routes = [   
     { 
@@ -36,6 +37,19 @@ const routes = [
         path: '/UserPlaylists',
 
     },
+    {
+        path: '/playlists/:username',
+        name: 'PlaylistDetails',
+        component: PlaylistDetails,
+        // props: true,
+        // beforeEnter: requireAuth,
+      },
+    //   {
+    //     path: '/playlists/user',
+    //     name: 'UserPlaylists',
+    //     component: UserPlaylists,
+    //     beforeEnter: requireAuth
+    //   }
 ]
 
 const router = createRouter({

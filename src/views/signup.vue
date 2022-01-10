@@ -40,8 +40,8 @@ export default {
                 email : this.email,
                 password : this.password
             };
-            const response = await axios.post('  http://localhost:3000/users', {data})
-            console.log(response)
+            const response = await axios.post('http://localhost:3000/users', {data})
+                                                                                                                                                                                                                                                                                                                                                                                                      
             if(response.status == 201){
                 localStorage.setItem("user-info", JSON.stringify(response.data))
                 this.$router.push({name:'Home'})

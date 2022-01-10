@@ -41,8 +41,63 @@
       "id": 5
     }
   ],
-
-  "playlist":[],
+  "playlists": [
+    {
+      "data": {
+        "title": "Mixed Songs",
+        "description": "This is a try playlist ",
+        "user_id": 1,
+        "created_by": "test",
+        "created_at": "1/9/2022, 10:43:27 AM",
+        "songs": []
+      },
+      "id": 1
+    },
+    {
+      "data": {
+        "title": "Afro Pop ",
+        "description": "This is a playlist of an afro-pop music ",
+        "user_id": 1,
+        "created_by": "test",
+        "created_at": "1/9/2022, 10:44:29 AM",
+        "songs": []
+      },
+      "id": 2
+    },
+    {
+      "data": {
+        "title": "RnB",
+        "description": "This is a playlist of an RNB music ",
+        "user_id": 1,
+        "created_by": "test",
+        "created_at": "1/9/2022, 10:45:20 AM",
+        "songs": []
+      },
+      "id": 3
+    },
+    {
+      "data": {
+        "title": "Hip-Hop",
+        "description": "This is a playlist of an hip-hop music ",
+        "user_id": 1,
+        "created_by": "test",
+        "created_at": "1/9/2022, 10:45:45 AM",
+        "songs": []
+      },
+      "id": 4
+    },
+    {
+      "data": {
+        "title": "Souls",
+        "description": "This is a playlist of an soul music ",
+        "user_id": 1,
+        "created_by": "test",
+        "created_at": "1/9/2022, 10:46:09 AM",
+        "songs": []
+      },
+      "id": 5
+    }
+  ],
   "posts": [
     {
       "id": 1,
